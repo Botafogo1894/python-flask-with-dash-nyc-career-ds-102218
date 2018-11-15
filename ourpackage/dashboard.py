@@ -13,7 +13,7 @@ app.layout = html.Div(children=[
         html.P('Dash converts Python classes into HTML'),
             html.Div([
                 dcc.Graph( id='my squish',
-                    figure= dict(data = [{'x': [1,2,3], 'y': [5,6,7]}]))
+                    figure= dict(data = data))
                 ])
             ])
 ])

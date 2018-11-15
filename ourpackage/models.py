@@ -6,6 +6,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False)
     tweets = db.relationship('Tweet', backref='users', lazy=True)
+
+#metod inside class that converts each instance to dict. We need this to use the JSONIFY function, so we can send the users to our API in a JSON format. Check routes functions.
     def to_dict(self):
         user = {'id': self.id, 'username': self.username, 'tweets': [tweet.to_dict() for tweet in self.tweets]}
         return user
@@ -16,6 +18,8 @@ class Tweet(db.Model):
     text = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User', back_populates="tweets")
+
+#metod inside class that converts each instance to dict. We need this to use the JSONIFY function, so we can send the users to our API in a JSON format. Check routes functions.
     def to_dict(self):
         tweet = {'id': self.id, 'text': self.text, 'user_id': self.user.id, 'user': self.user.username}
         return tweet

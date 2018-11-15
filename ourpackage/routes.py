@@ -14,7 +14,7 @@ def dashboard():
 # created JSON routes for our API
 @server.route('/api/users')
 def user_index():
-    all_users = db.session.query(User).all()
+    all_users = User.query.all()
     all_users_dicts = [user.to_dict() for user in all_users]
     return jsonify(all_users_dicts)
 
